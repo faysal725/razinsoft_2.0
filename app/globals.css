@@ -124,9 +124,18 @@
   /* 7. CONTAINER (Custom) */
   /* ============================================================= */
 
-  --container-md: 720px;
+  /* --container-md: 720px;
   --container-lg: 960px;
   --container-xl: 1140px;
   --container-2xl: 1320px;
-  --container-3xl: 1440px;
+  --container-3xl: 1440px; */
 }
+
+.container{
+  @apply px-4 max-w-[1272px] mx-auto  bg-amber-900;
+}
+
+
+/* .container{
+  @apply max-w-full px-4 sm:px-8 md:max-w-[720px] lg:px-12 lg:max-w-[960px] xl:max-w-[1140px] xl:px-16 2xl:max-w-[1440px] mx-auto  bg-amber-900;
+} */

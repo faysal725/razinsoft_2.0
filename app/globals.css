@@ -32,7 +32,7 @@
   /* ============================================================= */
   /* 2. FONT SIZES */
   /* ============================================================= */
-  --font-size-h1: 64px;
+  /* --font-size-h1: 64px;
   --font-size-h2: 56px;
   --font-size-h3: 48px;
   --font-size-h4: 40px;
@@ -44,12 +44,12 @@
   --font-size-subtitle-lg: 14px;
   --font-size-subtitle-md: 12px;
   --font-size-subtitle-sm: 10px;
-  --font-size-subtitle-x-sm: 8px;
+  --font-size-subtitle-x-sm: 8px; */
 
   /* ============================================================= */
   /* 3. LINE HEIGHTS */
   /* ============================================================= */
-  --line-height-h1: 72px;
+  /* --line-height-h1: 72px;
   --line-height-h2: 64px;
   --line-height-h3: 56px;
   --line-height-h4: 48px;
@@ -61,7 +61,7 @@
   --line-height-subtitle-lg: 22px;
   --line-height-subtitle-md: 20px;
   --line-height-subtitle-sm: 18px;
-  --line-height-subtitle-x-sm: 16px;
+  --line-height-subtitle-x-sm: 16px; */
 
   /* ============================================================= */
   /* 4. COLORS */
@@ -150,7 +150,7 @@ html {
 html,
 body {
   /* overflow-x: hidden; */
-  font-family: "Albert Sans", sans-serif;
+  font-family: var(--font-family-albert);
   font-optical-sizing: auto;
   color: var(--black);
   line-height: 1.6;

@@ -1,7 +1,13 @@
+'use client'
+
 import Link from "next/link";
 import styles from "./Navbar.module.css"
+import ButtonAnimationLarge from "../Button/AnimationLarge";
+
 
 export default function Navbar() {
+
+
     return (
 
         <>
@@ -23,12 +29,59 @@ export default function Navbar() {
                                 <div className="px-2 inline-flex justify-center items-center gap-1">
                                     <Link
                                         href="/"
-                                        className="text-center justify-start text-zinc-800 text-base font-medium hover_underline leading-normal"
+                                        className={"text-center justify-start text-zinc-800 text-base font-medium hover_underline leading-normal " + styles.hover_underline}
                                     >
                                         Home
                                     </Link>
                                 </div>
                             </div>
+
+
+                            {/* products */}
+                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
+                                <Link
+                                    href="/products"
+                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
+                                >
+                                    Products
+                                </Link>
+                            </div>
+
+
+                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
+                                <Link
+                                    href="/services/purchase"
+                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
+
+                                >
+                                    Service
+                                </Link>
+                            </div>
+
+
+
+                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
+                                <Link
+                                    href="/blogs"
+                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
+
+                                >
+                                    blogs
+                                </Link>
+                            </div>
+
+
+                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
+                                <div
+                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
+
+                                >
+                                    Company
+                                </div>
+                            </div>
+
+
+                            <ButtonAnimationLarge name="Get Support" seoClass="text-white" onClick={() => { console.log('clicked')}} />
                         </section>
                     </div>
                 </div>

@@ -132,7 +132,7 @@
 }
 
 .container{
-  @apply px-4 max-w-[1272px] mx-auto  bg-amber-900;
+  @apply px-4 max-w-[1272px] mx-auto;
 }
 
 

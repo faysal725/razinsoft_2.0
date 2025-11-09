@@ -131,7 +131,7 @@
   --container-3xl: 1440px; */
 }
 
-.container{
+.container {
   @apply px-4 max-w-[1272px] mx-auto;
 }
 
@@ -164,11 +164,11 @@ body {
 
 .title {
 
-  @apply text-blue-500  text-sm sm:text-2xl font-medium font-['Albert_Sans'] leading-loose
+  @apply text-blue-500 text-sm sm:text-2xl font-medium font-['Albert_Sans'] leading-loose
 }
 
 .heading {
-  @apply  text-nBlack text-2xl sm:text-5xl font-semibold font-['Albert_Sans'] leading-normal sm:leading-[56px]
+  @apply text-nBlack text-2xl sm:text-5xl font-semibold font-['Albert_Sans'] leading-normal sm:leading-[56px]
 }
 
 .title_dashboard {
@@ -200,8 +200,10 @@ body {
 }
 
 .hollow-number {
-  color: transparent; /* Makes the inside transparent */
-  -webkit-text-stroke: 0.5px black; /* Outline thickness and color */
+  color: transparent;
+  /* Makes the inside transparent */
+  -webkit-text-stroke: 0.5px black;
+  /* Outline thickness and color */
 }
 
 
@@ -210,8 +212,10 @@ body {
 /* scrollbar section  */
 
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* for Internet Explorer and Edge */
-  scrollbar-width: none;  /* for Firefox */
+  -ms-overflow-style: none;
+  /* for Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* for Firefox */
   -webkit-overflow-scrolling: touch;
 }
 
@@ -224,28 +228,108 @@ body {
 .scrollbar-style::-webkit-scrollbar {
   height: 2px;
   width: 4px;
-  }
-  
-  /* Track */
-  .scrollbar-style::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgb(187, 187, 187); 
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  .scrollbar-style::-webkit-scrollbar-thumb {
-    background:  rgb(187, 187, 187);
-    border-radius: 90px;
-    
-  }
-  
-  .scrollbar-style::-webkit-scrollbar-corner {
+}
 
-  }
-  /* Handle on hover */
-  .scrollbar-style::-webkit-scrollbar-thumb:hover {
-    background:  rgb(187, 187, 187)
-  }
+/* Track */
+.scrollbar-style::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(187, 187, 187);
+  border-radius: 10px;
+}
 
+/* Handle */
+.scrollbar-style::-webkit-scrollbar-thumb {
+  background: rgb(187, 187, 187);
+  border-radius: 90px;
+
+}
+
+.scrollbar-style::-webkit-scrollbar-corner {}
+
+/* Handle on hover */
+.scrollbar-style::-webkit-scrollbar-thumb:hover {
+  background: rgb(187, 187, 187)
+}
 
 
+
+/* product section start */
+
+.ellipse-1,
+.ellipse-2,
+.ellipse-3,
+.ellipse-4 {
+  width: 133px;
+  height: 133px;
+  position: absolute;
+}
+
+.ellipse-1 {
+  left: 165px;
+  top: 314px;
+  background: #893bf6;
+  filter: blur(200px);
+}
+
+.ellipse-2 {
+  right: 228px;
+  bottom: 60px;
+  background: #8b5cf6;
+  filter: blur(200px);
+}
+
+.ellipse-3 {
+  left: 568px;
+  bottom: 88px;
+  background: #8b5cf6;
+  filter: blur(200px);
+}
+
+.ellipse-4 {
+  left: 92px;
+  bottom: 173px;
+  background: #42bfed;
+  filter: blur(200px);
+}
+
+.whatsappIcon {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9999;
+}
+
+/* Navbar Styling */
+.navbar-brand {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.navbar-nav .nav-link {
+  color: var(--black);
+  transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #007bff;
+}
+
+.contact-us-btn {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 35px;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 22px;
+}
+
+
+
+.profile-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #f6f7f9;
+  cursor: pointer;
+  @apply flex items-center justify-center overflow-hidden;
+}

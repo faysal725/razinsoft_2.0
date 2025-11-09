@@ -1,8 +1,8 @@
-'use client'
 
 import Link from "next/link";
 import styles from "./Navbar.module.css"
 import ButtonAnimationLarge from "../Button/AnimationLarge";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 
 export default function Navbar() {
@@ -48,6 +48,7 @@ export default function Navbar() {
                             </div>
 
 
+                            {/* services */}
                             <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
                                 <Link
                                     href="/services/purchase"
@@ -59,7 +60,7 @@ export default function Navbar() {
                             </div>
 
 
-
+                            {/* blogs */}
                             <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
                                 <Link
                                     href="/blogs"
@@ -71,6 +72,7 @@ export default function Navbar() {
                             </div>
 
 
+                            {/* company */}
                             <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
                                 <div
                                     className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
@@ -81,7 +83,22 @@ export default function Navbar() {
                             </div>
 
 
-                            <ButtonAnimationLarge name="Get Support" seoClass="text-white" onClick={() => { console.log('clicked')}} />
+                            <ButtonAnimationLarge name="Get Support" seoClass="text-white" />
+
+
+                            <Link
+                                href='/login'
+                                className="profile-icon"
+                            >
+                                <img src="/images/icon/user.svg" alt="User" />
+                            </Link>
+                        </section>
+
+                        <section
+                            className=" lg:hidden w-8 h-8 flex justify-center items-center rounded-full cursor-pointer bg-nGray-50"
+                        >
+                            <Bars3Icon className="h-6 w-6 text-nGray-500" />
+                            {/* <XMarkIcon className="h-6 w-6 text-nGray-500" />  */}
                         </section>
                     </div>
                 </div>

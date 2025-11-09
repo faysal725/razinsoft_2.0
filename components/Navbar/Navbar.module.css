@@ -1,20 +1,5 @@
-/* .hover_underline {
-  @apply relative capitalize cursor-pointer transition-all duration-200 hover:text-primary;
-  @apply after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary;
-  @apply after:transition-all after:duration-300 after:transform after:-translate-x-1/2 hover:after:w-full;
-}
 
-.select_underline {
-  @apply relative capitalize cursor-pointer transition-all duration-200 text-primary;
-  @apply after:content-[''] after:absolute after:left-1/2 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary;
-  @apply after:transition-all after:duration-300 after:transform after:-translate-x-1/2 after:w-full;
-}
-
- */
-
-
-
- /* Hover underline effect */
+/* Hover underline effect */
 .hover_underline {
   position: relative;
   text-transform: capitalize;
@@ -49,7 +34,7 @@
   text-transform: capitalize;
   cursor: pointer;
   transition: all 0.2s;
-  color: #3b82f6; /* --primary */
+  color: var(--color-primary); /* --primary */
 }
 
 .select_underline::after {
@@ -59,7 +44,7 @@
   bottom: 0;
   height: 2px;
   width: 100%;
-  background-color: #3b82f6; /* --primary */
+  background-color: var(--color-primary); /* --primary */
   transition: all 0.3s;
   transform: translateX(-50%);
 }

@@ -3,6 +3,8 @@ import Link from "next/link";
 import styles from "./Navbar.module.css"
 import ButtonAnimationLarge from "../Button/AnimationLarge";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import SupportBtn from "../Button/SupportBtn";
+import NavLinks from "./NavLinks";
 
 
 export default function Navbar() {
@@ -24,66 +26,11 @@ export default function Navbar() {
                         <section
                             className="hidden lg:inline-flex justify-center items-center gap-4"
                         >
-
-                            <div className="h-6 inline-flex flex-col justify-start items-center">
-                                <div className="px-2 inline-flex justify-center items-center gap-1">
-                                    <Link
-                                        href="/"
-                                        className={"text-center justify-start text-zinc-800 text-base font-medium hover_underline leading-normal " + styles.hover_underline}
-                                    >
-                                        Home
-                                    </Link>
-                                </div>
-                            </div>
+                            <NavLinks />
 
 
-                            {/* products */}
-                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
-                                <Link
-                                    href="/products"
-                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
-                                >
-                                    Products
-                                </Link>
-                            </div>
-
-
-                            {/* services */}
-                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
-                                <Link
-                                    href="/services/purchase"
-                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
-
-                                >
-                                    Service
-                                </Link>
-                            </div>
-
-
-                            {/* blogs */}
-                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
-                                <Link
-                                    href="/blogs"
-                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
-
-                                >
-                                    blogs
-                                </Link>
-                            </div>
-
-
-                            {/* company */}
-                            <div className="h-6 px-2 inline-flex justify-center items-center gap-1">
-                                <div
-                                    className={"text-center justify-start text-black text-base font-medium hover_underline leading-normal " + styles.hover_underline}
-
-                                >
-                                    Company
-                                </div>
-                            </div>
-
-
-                            <ButtonAnimationLarge name="Get Support" seoClass="text-white" />
+                            {/* modal */}
+                            <SupportBtn />
 
 
                             <Link

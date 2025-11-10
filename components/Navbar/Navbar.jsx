@@ -5,6 +5,7 @@ import ButtonAnimationLarge from "../Button/AnimationLarge";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import SupportBtn from "../Button/SupportBtn";
 import NavLinks from "./NavLinks";
+import Sidepanel from "../Sidepanel/Sidepanel";
 
 
 export default function Navbar() {
@@ -42,10 +43,11 @@ export default function Navbar() {
                         </section>
 
                         <section
-                            className=" lg:hidden w-8 h-8 flex justify-center items-center rounded-full cursor-pointer bg-nGray-50"
+                            className=" lg:hidden "
                         >
-                            <Bars3Icon className="h-6 w-6 text-nGray-500" />
+                            {/* <Bars3Icon className="h-6 w-6 text-nGray-500" /> */}
                             {/* <XMarkIcon className="h-6 w-6 text-nGray-500" />  */}
+                            <Sidepanel />
                         </section>
                     </div>
                 </div>

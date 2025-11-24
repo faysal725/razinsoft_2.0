@@ -1,9 +1,16 @@
 'use client'
 import ButtonSolid3 from "@/components/Button/Solid3";
 import InputText2 from "../InputText2";
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement } from "@/store/slices/authSlice";
 
 
 export default function LoginForm() {
+
+    const dispatch = useDispatch();
+    const count = useSelector((state) => state.auth.value);
+
+
     function login(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -13,6 +20,26 @@ export default function LoginForm() {
     }
     return (
         <section className="space-y-5 w-full">
+
+            {/* <div className="p-5">
+                <h1>Count: {count}</h1>
+
+                <button
+                    onClick={() => dispatch(increment())}
+                    className="px-4 py-2 bg-blue-500 text-white"
+                >
+                    +
+                </button>
+
+                <button
+                    onClick={() => dispatch(decrement())}
+                    className="px-4 py-2 bg-red-500 text-white ml-2"
+                >
+                    -
+                </button>
+            </div> */}
+
+
             <div className="flex flex-col items-center gap-2">
                 <img
                     src="/images/logo/logo-dark2.svg"

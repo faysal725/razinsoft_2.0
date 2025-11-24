@@ -7,8 +7,9 @@ export default function LoginForm() {
     function login(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
-        const query = formData.get("email");
-        console.log(query)
+        const email = formData.get("email");
+        const password = formData.get("password");
+        console.log(email, password)
     }
     return (
         <section className="space-y-5 w-full">
@@ -32,7 +33,18 @@ export default function LoginForm() {
                     title="password"
                     type="password"
                     placeholder="password" errorMsg='' />
-                <ButtonSolid3 name="Submit" shouldDisabled={false} type="submit" />
+
+
+                <span className="flex justify-end">
+                    <p
+                        className="text-xs md:text-sm font-normal text-primary cursor-pointer"
+                    >
+                        Forget Password
+                    </p>
+                </span>
+
+
+                <ButtonSolid3 name="Login" shouldDisabled={false} type="submit" />
 
                 {/* {state?.error && <p className="text-red-500 mt-2">{state.error}</p>}
             {state?.success && <p className="text-green-500 mt-2">{state.success}</p>} */}

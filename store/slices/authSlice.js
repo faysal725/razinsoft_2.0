@@ -1,16 +1,17 @@
+import crud from "@/lib/axios";
 import { createSlice, createAsyncThunk  } from "@reduxjs/toolkit";
 
 
 export const loginUser = createAsyncThunk(
     "auth/loginUser",
-    // async (credentials, { rejectWithValue }) => {
-    //     try {
-    //         const res = await axios.post("/api/login", credentials);
-    //         return res.data; // returned value goes to fulfilled case
-    //     } catch (err) {
-    //         return rejectWithValue(err.response.data);
-    //     }
-    // }
+    async (credentials, { rejectWithValue }) => {
+        try {
+            const res = await crud.post("/login", credentials);
+            return res.data; // returned value goes to fulfilled case
+        } catch (err) {
+            return rejectWithValue(err.response.data);
+        }
+    }
 );
 
 
@@ -21,7 +22,6 @@ const authSlice = createSlice({
         user: null,
         token: null,
         token_no: null,
-        value: 0,
         loading: false,
         errors: null,
     },
@@ -29,9 +29,9 @@ const authSlice = createSlice({
 
 
         logout(state) {
-            state.user = false;
+            state.authenticated = false;
+            state.user = null;
             state.token = null;
-            state.authenticated = null;
             state.token_no = null
         },
     },
@@ -45,12 +45,13 @@ const authSlice = createSlice({
             })
             // success
             .addCase(loginUser.fulfilled, (state, action) => {
-                console.log(action.payload, 'this is the repsonse')
-                // state.loading = false;
-                // state.authenticated = true;
-                // state.user = action.payload.user;
-                // state.token = action.payload.token;
-                // state.token_no = action.payload.token_no;
+                // console.log(action.payload.data.user, 'this is the repsonse')
+                // console.log(action.payload.data.access_token.token, 'this is the repsonse')
+                state.user = action.payload.data.user;
+                state.token = action.payload.data.access_token.token;
+                state.token_no = action.payload.data.token_no;
+                state.loading = false;
+                state.authenticated = true;
             })
             // errors
             .addCase(loginUser.rejected, (state, action) => {

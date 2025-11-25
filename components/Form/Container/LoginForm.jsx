@@ -2,13 +2,13 @@
 import ButtonSolid3 from "@/components/Button/Solid3";
 import InputText2 from "../InputText2";
 import { useDispatch, useSelector } from "react-redux";
-import { increment, decrement } from "@/store/slices/authSlice";
+import { loginUser } from "@/store/slices/authSlice";
 
 
 export default function LoginForm() {
 
     const dispatch = useDispatch();
-    const count = useSelector((state) => state.auth.value);
+    const { loading, errors } = useSelector((state) => state.auth);
 
 
     function login(e) {
@@ -16,7 +16,7 @@ export default function LoginForm() {
         const formData = new FormData(e.target);
         const email = formData.get("email");
         const password = formData.get("password");
-        console.log(email, password)
+        dispatch(loginUser({ email, password }));
     }
     return (
         <section className="space-y-5 w-full">

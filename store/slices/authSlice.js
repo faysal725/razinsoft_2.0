@@ -52,6 +52,9 @@ const authSlice = createSlice({
             state.token = null;
             state.token_no = null
         },
+        clearErrors(state) {
+            state.errors = null;
+        },
     },
 
     extraReducers: (builder) => {

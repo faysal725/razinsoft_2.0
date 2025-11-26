@@ -1,4 +1,4 @@
-import LoginForm from "@/components/Form/Container/LoginForm";
+import AuthorizationForm from "@/components/Form/Container/AuthorizationForm";
 import Image from "next/image";
 
 export default function Login() {
@@ -16,7 +16,7 @@ export default function Login() {
             />
 
             <div className="col-span-2 lg:col-span-1 bg-white rounded-lg p-8 px-4 md:px-8 flex flex-col justify-start md:justify-center items-center min-h-[75vh] lg:min-h-auto">
-              <LoginForm />
+              <AuthorizationForm />
             </div>
           </div>
         </div>

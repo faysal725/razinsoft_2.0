@@ -1,5 +1,6 @@
 import "./globals.css";
 import ReduxProvider from "@/store/providers";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export const metadata = {
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
         className={`antialiased`}
       >
         <ReduxProvider>
+        <ToastContainer />
           {children}
         </ReduxProvider>
       </body>

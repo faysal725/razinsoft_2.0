@@ -8,14 +8,152 @@ import { useEffect, useState } from "react";
 import Dropdown2 from "../Dropdown2";
 import crud from "@/lib/axios";
 import { useRouter, useSearchParams } from "next/navigation";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
-function ForgetPasswordForm() {
+function ResetPassword({ setFormType }) {
+    
+    // apis
+    let resetPasswordApiEndpoint = "/reset-password";
 
 
+    // hooks
+    const searchParams = useSearchParams(); // Allows reading the query params
+
+    
+    // variables
+    const [errorMsgs, setErrorMsgs] = useState(null);
+    const [isLoading, setIsLoading] = useState(null);
+
+    const handleTokenSending = async (e) => {
+        setErrorMsgs(null)
+        setIsLoading(true)
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const email = formData.get("email");
+        const password = formData.get("password");
+        const password_confirmation = formData.get("password_confirmation");
+        const token = searchParams.get('token');
+
+
+
+        try {
+            const res = await crud.post(resetPasswordApiEndpoint, { email, password, password_confirmation, token });
+            toast.success(res.data.message);
+            setIsLoading(false)
+            setFormType('login')
+        } catch (err) {
+            console.log(err.response.data)
+            toast.error(err.response?.data?.message);
+            setErrorMsgs(err.response?.data)
+            setIsLoading(false)
+        }
+
+    }
     return (
-        <div>ForgetPasswordForm form</div>
+        <form onSubmit={handleTokenSending} className="space-y-3 mx-auto md:p-4 w-full">
+
+            <InputText2
+                label="email"
+                title="Email"
+                type="text"
+                required={true}
+                placeholder="Email"
+                errorMsg={''}
+            />
+
+            <InputText2
+                label="password"
+                title="password"
+                type="password"
+                required={true}
+                placeholder="password"
+                errorMsg={''}
+            />
+            <InputText2
+                label="password_confirmation"
+                title="confirm password"
+                type="password"
+                required={true}
+                placeholder="Confirm password"
+                errorMsg={errorMsgs?.errors?.password ? errorMsgs?.errors?.password[0] : ''}
+            />
+
+            <ButtonSolid3 name={isLoading ? "Sending..." : "Send Request"} shouldDisabled={false} type="submit" />
+
+
+            <div
+                className="text-xs md:text-sm text-center"
+            >
+                Already have an account?
+                <span onClick={() => setFormType("login")}
+                    className="pl-1 text-primary inline cursor-pointer"
+                >
+                    Login
+                </span>
+            </div>
+        </form>
+    )
+}
+
+
+function ForgetPasswordForm({ setFormType }) {
+
+
+    // apis
+    let forgotPasswordApiEndpoint = "/forgot-password";
+
+
+    // variables
+    const [errorMsg, setErrorMsg] = useState(null);
+    const [isLoading, setIsLoading] = useState(null);
+
+    const handleTokenSending = async (e) => {
+        setErrorMsg(null)
+        setIsLoading(true)
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const email = formData.get("email");
+
+        try {
+            const res = await crud.post(forgotPasswordApiEndpoint, { email });
+            toast.success(res.data.message);
+            setIsLoading(false)
+        } catch (err) {
+            console.log(err.response)
+            toast.error(err.response?.data?.message);
+            setErrorMsg(err.response?.data?.message)
+            setIsLoading(false)
+        }
+
+    }
+    return (
+        <form onSubmit={handleTokenSending} className="space-y-3 mx-auto md:p-4 w-full">
+
+            <InputText2
+                label="email"
+                title="Email"
+                type="text"
+                required={true}
+                placeholder="Email"
+                errorMsg={errorMsg}
+            />
+
+            <ButtonSolid3 name={isLoading ? "Sending..." : "Send Request"} shouldDisabled={false} type="submit" />
+
+
+            <div
+                className="text-xs md:text-sm text-center"
+            >
+                Already have an account?
+                <span onClick={() => setFormType("login")}
+                    className="pl-1 text-primary inline cursor-pointer"
+                >
+                    Login
+                </span>
+            </div>
+        </form>
     )
 }
 
@@ -159,7 +297,7 @@ function LoginForm({ setFormType }) {
     }
 
     // useeffect
-        useEffect(() => {
+    useEffect(() => {
         dispatch(clearErrors())
     }, [])
     return (
@@ -208,20 +346,25 @@ function LoginForm({ setFormType }) {
 
 export default function AuthorizationForm() {
 
-const [formType, setFormType] = useState('login');
-    
+    const [formType, setFormType] = useState('login');
+
     // 1. Get the current status from Redux
     const { authenticated } = useSelector((state) => state.auth);
-    
+
     // 2. Get App Router hooks
     const router = useRouter();
     const searchParams = useSearchParams(); // Allows reading the query params
 
     useEffect(() => {
+
+        console.log(searchParams.get('token'), searchParams.get('email'))
         // 3. Get the intended return path from the URL
         // Middleware added this: /login?from=/dashboard/settings
-        const returnUrl = searchParams.get('from') || '/dashboard'; 
+        const returnUrl = searchParams.get('from') || '/dashboard';
 
+        if (searchParams.get('token') && searchParams.get('email')) {
+            setFormType('resetPass')
+        }
         // 4. Check if authentication state has successfully changed
         if (authenticated) {
             console.log("Authentication successful, redirecting to:", returnUrl);
@@ -230,7 +373,7 @@ const [formType, setFormType] = useState('login');
         }
     }, [authenticated, router, searchParams]); // Run this effect when 'authenticated' changes
 
-    
+
     // 6. If the user is authenticated but the effect hasn't run yet, show a loader
     if (authenticated) {
         return (
@@ -240,7 +383,7 @@ const [formType, setFormType] = useState('login');
             </div>
         );
     }
-    
+
     // 7. Render the forms if not authenticated
     return (
         <section className="space-y-5 w-full">
@@ -255,8 +398,9 @@ const [formType, setFormType] = useState('login');
 
             {
                 formType === 'signup' ? (<RegisterForm setFormType={setFormType} />) :
-                formType === 'forgetPass' ? (<ForgetPasswordForm setFormType={setFormType} />) :
-                (<LoginForm setFormType={setFormType} />)
+                    formType === 'forgetPass' ? (<ForgetPasswordForm setFormType={setFormType} />) :
+                        formType === 'resetPass' ? (<ResetPassword setFormType={setFormType} />) :
+                            (<LoginForm setFormType={setFormType} />)
             }
 
         </section>

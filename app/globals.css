@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
 
@@ -25,10 +24,6 @@
 
 
 @theme {
-  /* ============================================================= */
-  /* 1. FONT FAMILY */
-  /* ============================================================= */
-  --font-family-albert: "Albert Sans", sans-serif;
 
   /* ============================================================= */
   /* 2. FONT SIZES */

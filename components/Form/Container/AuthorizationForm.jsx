@@ -2,7 +2,7 @@
 import ButtonSolid3 from "@/components/Button/Solid3";
 import InputText2 from "../InputText2";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser, registerUser } from "@/store/slices/authSlice";
+import { loginUser, registerUser, clearErrors } from "@/store/slices/authSlice";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Dropdown2 from "../Dropdown2";
@@ -66,6 +66,7 @@ function RegisterForm({ setFormType }) {
 
     useEffect(() => {
         getAllCountries();
+        dispatch(clearErrors())
     }, [])
 
 
@@ -155,6 +156,11 @@ function LoginForm({ setFormType }) {
         const password = formData.get("password");
         dispatch(loginUser({ email, password }));
     }
+
+    // useeffect
+        useEffect(() => {
+        dispatch(clearErrors())
+    }, [])
     return (
         <form onSubmit={login} className="space-y-3 mx-auto md:p-4 w-full">
             <InputText2

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Dropdown2 from "../Dropdown2";
 import crud from "@/lib/axios";
+import { useRouter, useSearchParams } from "next/navigation";
 
 
 
@@ -96,7 +97,7 @@ function RegisterForm({ setFormType }) {
                 onChange={(e) => console.log(e.target.value)}
                 returnValue='id'
                 showValue='name'
-                options={countryOptions}
+                options={countryOptions.countries}
                 errorMsg={errors?.errors?.country_id ? errors?.errors?.country_id[0] : ''}
             />
             <InputText2
@@ -207,9 +208,40 @@ function LoginForm({ setFormType }) {
 
 export default function AuthorizationForm() {
 
-    const [formType, setFormType] = useState('login');
+const [formType, setFormType] = useState('login');
+    
+    // 1. Get the current status from Redux
+    const { authenticated } = useSelector((state) => state.auth);
+    
+    // 2. Get App Router hooks
+    const router = useRouter();
+    const searchParams = useSearchParams(); // Allows reading the query params
 
+    useEffect(() => {
+        // 3. Get the intended return path from the URL
+        // Middleware added this: /login?from=/dashboard/settings
+        const returnUrl = searchParams.get('from') || '/dashboard'; 
 
+        // 4. Check if authentication state has successfully changed
+        if (authenticated) {
+            console.log("Authentication successful, redirecting to:", returnUrl);
+            // 5. Trigger the redirect to the target page
+            router.push(returnUrl);
+        }
+    }, [authenticated, router, searchParams]); // Run this effect when 'authenticated' changes
+
+    
+    // 6. If the user is authenticated but the effect hasn't run yet, show a loader
+    if (authenticated) {
+        return (
+            <div className="text-center p-10">
+                <h2>Login Successful!</h2>
+                <p>Redirecting you to your dashboard...</p>
+            </div>
+        );
+    }
+    
+    // 7. Render the forms if not authenticated
     return (
         <section className="space-y-5 w-full">
 
@@ -223,8 +255,8 @@ export default function AuthorizationForm() {
 
             {
                 formType === 'signup' ? (<RegisterForm setFormType={setFormType} />) :
-                    formType === 'forgetPass' ? (<ForgetPasswordForm setFormType={setFormType} />) :
-                        (<LoginForm setFormType={setFormType} />)
+                formType === 'forgetPass' ? (<ForgetPasswordForm setFormType={setFormType} />) :
+                (<LoginForm setFormType={setFormType} />)
             }
 
         </section>
